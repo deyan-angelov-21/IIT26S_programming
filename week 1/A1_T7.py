@@ -1,3 +1,4 @@
+print("Program starting")
 print("Calculate fuel consumtion.")
 
 Feed = input("Enter travel distance(kilometers): ")
@@ -9,3 +10,4 @@ FuelUsage = int(Feed)
 Consumption = int((FuelUsage / Distance) * 100)
 
 print(f"Fuel consumption is {Consumption} l per 100 km")
+print("Program ending")
