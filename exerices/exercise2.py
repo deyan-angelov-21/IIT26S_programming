@@ -6,4 +6,4 @@ for i in range(3):
         break
     print("Incorrect password.")
 else:
-    print("Too many failed attempts. Locked out!")
+    print("Too many failed attempts")
