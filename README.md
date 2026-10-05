@@ -3,3 +3,6 @@ W1_6 - https://github.com/deyan-angelov-21/Python_programming_W1_6<br>
 
 W2_5 - https://github.com/deyan-angelov-21/Python_programming_W2_5<br>
 W2_6 - https://github.com/deyan-angelov-21/Python_programming_W2_6<br>
+
+W3_5 - https://github.com/deyan-angelov-21/Python_programming_W3_5<br>
+W3_6 - https://github.com/deyan-angelov-21/Python_programming_W3_6<br>
