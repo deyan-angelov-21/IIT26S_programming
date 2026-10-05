@@ -1,4 +1,5 @@
-print("Program starting.\n")
+print("Program starting")
+print()
 
 word = input("Insert a closed compound word: ")
 

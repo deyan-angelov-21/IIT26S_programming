@@ -1,4 +1,5 @@
 print("Program Starting")
+print()
 
 start = int(input("Insert starting value: "))
 stop = int(input("Insert stopping value: "))
