@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Layout Task</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .icon-bar {
+            width: 100%;
+            background-color: #2c3e50;
+            overflow: auto;
+        }
+
+        .icon-bar a {
+            float: left;
+            width: 25%;
+            text-align: center;
+            padding: 14px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .icon-bar a:hover {
+            background-color: #1abc9c;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        main {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        aside {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .flex-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .flex-item {
+            flex: 1;
+            background: #f1f2f6;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .icon-bar a {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="icon-bar">
+        <a href="#"><i class="fa fa-home"></i> Home</a>
+        <a href="#"><i class="fa fa-search"></i> Search</a>
+        <a href="#"><i class="fa fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fa fa-globe"></i> About</a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>CSS Grid and Flexbox Layout</h1>
+            <p>A simple webpage demonstrating layout implementation using CSS Grid and Flexbox.</p>
+        </header>
+
+        <main>
+            <h2>Content Layout</h2>
+            <p>The main structure uses CSS Grid to arrange the primary content and the sidebar side-by-side.</p>
+            
+            <img src="https://picsum.photos/800/400" alt="Placeholder Image" class="content-image">
+
+            <h3>Key Settings and Effects</h3>
+            <ul>
+                <li><code>display: grid;</code> defines a grid container.</li>
+                <li><code>grid-template-columns: 2fr 1fr;</code> creates two columns where the first takes twice the space of the second.</li>
+                <li><code>gap: 20px;</code> sets the spacing between grid items.</li>
+            </ul>
+
+            <h3 style="margin-top: 20px;">Flexbox Section</h3>
+            <div class="flex-box">
+                <div class="flex-item">Feature A</div>
+                <div class="flex-item">Feature B</div>
+            </div>
+        </main>
+
+        <aside>
+            <h2>Responsive Design</h2>
+            <p>The layout adapts to screen size changes using media queries.</p>
+            <p>When the screen width drops below 768px, the grid columns automatically stack into a single column layout for better readability on mobile devices.</p>
+        </aside>
+    </div>
+
+</body>
+</html>
