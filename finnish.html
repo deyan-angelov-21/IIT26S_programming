@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnish 1 Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 5px;
+        }
+        .counter {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .finnish-text {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .hidden {
+            display: none;
+        }
+        .translation, .answer {
+            font-size: 18px;
+            color: #0066cc;
+            margin-top: 10px;
+        }
+        .answer {
+            color: #009933;
+        }
+        .answer-subtext {
+            font-size: 15px;
+            color: #666;
+            font-style: italic;
+            margin-top: 4px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Finnish 1 Practice</h1>
+    <div class="counter" id="counter">Card 1 of 20</div>
+
+    <div class="card">
+        <div class="finnish-text" id="finnishText">Loading...</div>
+        <div class="translation hidden" id="translationSection">
+            <strong>English:</strong> <span id="translationText"></span>
+        </div>
+        <div class="answer hidden" id="answerSection">
+            <strong>Suggested Answer:</strong> <span id="answerText"></span>
+            <div class="answer-subtext" id="answerTranslationText"></div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="toggleTranslation()">Show English Meaning</button>
+        <button onclick="toggleAnswer()">Reveal Answer</button>
+    </div>
+
+    <div class="nav-buttons">
+        <button onclick="prevCard()">Previous</button>
+        <button onclick="nextCard()">Next</button>
+    </div>
+
+    <script>
+        const flashcards = [
+            {
+                finnish: "Kuka sinä olet? Mikä sinun nimi on?",
+                translation: "Who are you? What is your name?",
+                answer: "Minä olen Deyan. / Minun nimi on Deyan.",
+                answerTranslation: "I am Deyan. / My name is Deyan."
+            },
+            {
+                finnish: "Mikä sinun etunimi on?",
+                translation: "What is your first name?",
+                answer: "Minun etunimi on Deyan.",
+                answerTranslation: "My first name is Deyan."
+            },
+            {
+                finnish: "Mikä sinun sukunimi on?",
+                translation: "What is your last name?",
+                answer: "Minun sukunimi on Angelov.",
+                answerTranslation: "My last name is Angelov."
+            },
+            {
+                finnish: "Miten se kirjoitetaan?",
+                translation: "How is it spelled?",
+                answer: "Se kirjoitetaan D-E-Y-A-N / A-N-G-E-L-O-V.",
+                answerTranslation: "It is spelled D-E-Y-A-N / A-N-G-E-L-O-V."
+            },
+            {
+                finnish: "Miten tämä kirjoitetaan?",
+                translation: "How is this spelled / written?",
+                answer: "Tämä kirjoitetaan...",
+                answerTranslation: "This is written..."
+            },
+            {
+                finnish: "Kuinka vanha sinä olet?",
+                translation: "How old are you?",
+                answer: "Minä olen 19 (yhdeksäntoista) vuotta vanha.",
+                answerTranslation: "I am 19 years old."
+            },
+            {
+                finnish: "Kuinka monta…?",
+                translation: "How many…?",
+                answer: "Minulla on... / Täällä on...",
+                answerTranslation: "I have... / There is/are..."
+            },
+            {
+                finnish: "Miten (sinulla) menee? Mitä (sinulle) kuuluu?",
+                translation: "How is it going? How are you?",
+                answer: "Kiitos, minulle kuuluu hyvää! Entä sinulle?",
+                answerTranslation: "Thanks, I'm doing well! How about you?"
+            },
+            {
+                finnish: "Mistä sinä olet kotoisin?",
+                translation: "Where are you from?",
+                answer: "Minä olen kotoisin Bulgariasta.",
+                answerTranslation: "I am from Bulgaria."
+            },
+            {
+                finnish: "Minkä maalainen sinä olet?",
+                translation: "What nationality are you?",
+                answer: "Minä olen bulgarialainen.",
+                answerTranslation: "I am Bulgarian."
+            },
+            {
+                finnish: "Mikä on sinun äidinkieli?",
+                translation: "What is your mother tongue?",
+                answer: "Minun äidinkieli on bulgaria.",
+                answerTranslation: "My mother tongue is Bulgarian."
+            },
+            {
+                finnish: "Mitä kieliä sinä puhut?",
+                translation: "What languages do you speak?",
+                answer: "Minä puhun bulgariaa ja englantia sekä vähän suomea.",
+                answerTranslation: "I speak Bulgarian and English, as well as a little Finnish."
+            },
+            {
+                finnish: "Missä sinä asut?",
+                translation: "Where do you live?",
+                answer: "Minä asun Lahdessa, Suomessa.",
+                answerTranslation: "I live in Lahti, Finland."
+            },
+            {
+                finnish: "Kenen kanssa sinä asut?",
+                translation: "Who do you live with?",
+                answer: "Asun kämppäkaverin kanssa.",
+                answerTranslation: "I live with a roommate."
+            },
+            {
+                finnish: "Mitä sinä opiskelet?",
+                translation: "What do you study?",
+                answer: "Minä opiskelen ohjelmistotekniikkaa.",
+                answerTranslation: "I study software engineering."
+            },
+            {
+                finnish: "Mikä on sinun puhelinnumero?",
+                translation: "What is your phone number?",
+                answer: "Minun puhelinnumero on...",
+                answerTranslation: "My phone number is..."
+            },
+            {
+                finnish: "Mikä on sinun sähköpostiosoite?",
+                translation: "What is your email address?",
+                answer: "Minun sähköpostiosoite on...",
+                answerTranslation: "My email address is..."
+            },
+            {
+                finnish: "Millainen sinun perhe on?",
+                translation: "What is your family like?",
+                answer: "Minun perheeseen kuuluu äiti ja sisko.",
+                answerTranslation: "My family includes my mother and sister."
+            },
+            {
+                finnish: "Onko sinulla äiti/isä/veli/sisko/mies/vaimo/lapsia?",
+                translation: "Do you have a mother/father/brother/sister/husband/wife/children?",
+                answer: "Kyllä, minulla on äiti ja sisko.",
+                answerTranslation: "Yes, I have a mother and a sister."
+            },
+            {
+                finnish: "Mikä on hänen/heidän nimi?",
+                translation: "What is his/her/their name?",
+                answer: "Hänen nimensä on... / Heidän nimensä ovat...",
+                answerTranslation: "His/Her name is... / Their names are..."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const finnishText = document.getElementById("finnishText");
+        const translationText = document.getElementById("translationText");
+        const answerText = document.getElementById("answerText");
+        const answerTranslationText = document.getElementById("answerTranslationText");
+        const translationSection = document.getElementById("translationSection");
+        const answerSection = document.getElementById("answerSection");
+        const counter = document.getElementById("counter");
+
+        function updateCard() {
+            const current = flashcards[currentIndex];
+            finnishText.textContent = current.finnish;
+            translationText.textContent = current.translation;
+            answerText.textContent = current.answer;
+            answerTranslationText.textContent = current.answerTranslation;
+            
+            translationSection.classList.add("hidden");
+            answerSection.classList.add("hidden");
+            counter.textContent = `Card ${currentIndex + 1} of ${flashcards.length}`;
+        }
+
+        function toggleTranslation() {
+            translationSection.classList.toggle("hidden");
+        }
+
+        function toggleAnswer() {
+            answerSection.classList.toggle("hidden");
+        }
+
+        function nextCard() {
+            currentIndex = (currentIndex + 1) % flashcards.length;
+            updateCard();
+        }
+
+        function prevCard() {
+            currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+            updateCard();
+        }
+
+        updateCard();
+    </script>
+
+</body>
+</html>
