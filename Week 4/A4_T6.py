@@ -1,19 +1,18 @@
 print("Program starting.")
 
-n = int(input("Insert a positive integer: "))
+number = int(input("Insert a positive integer: "))
 
-sequence = [n]
 steps = 0
-
-while n > 1:
-    if n % 2 == 0:
-        n = n // 2
+sequence = str(number)
+while number != 1:
+    if number % 2 == 0:
+        number //= 2
     else:
-        n = 3 * n + 1
-    sequence.append(n)
+        number = 3 * number + 1
+    sequence += f" -> {number}"
     steps += 1
 
-print(" -> ".join(map(str, sequence)))
+print(sequence)
 print(f"Sequence had {steps} total steps.")
-
+print()
 print("Program ending.")
