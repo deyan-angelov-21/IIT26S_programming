@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculators Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #111;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        .calc-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            max-width: 600px;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 5px 8px;
+            font-size: 1rem;
+        }
+
+        .result-display {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-box">
+        <h2>Task 1. Calculator with text box and dropdown list</h2>
+        <div class="row">
+            <input type="number" id="num1-task1" value="10" style="width: 60px;">
+            <select id="operator-1">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="number" id="num2-task1" value="5" style="width: 60px;">
+            <button id="calc-btn-1" onclick="calculateTask1()">= Press = mark!</button>
+            <span class="result-display" id="result-task1">Result: </span>
+        </div>
+    </div>
+
+    <div class="calc-box">
+        <h2>Task 2. Calculator with text box and option buttons</h2>
+        <div class="row">
+            <input type="number" id="num1-task2" value="10" style="width: 100px;">
+        </div>
+        <div class="row">
+            <input type="radio" id="+" name="operator-2" value="+" checked>
+            <label for="+">Addition</label><br>
+            <input type="radio" id="-" name="operator-2" value="-">
+            <label for="-">Subtraction</label><br>
+            <input type="radio" id="*" name="operator-2" value="*">
+            <label for="*">Multiplication</label><br>
+            <input type="radio" id="/" name="operator-2" value="/">
+            <label for="/">Distribution</label>
+        </div>
+        <div class="row">
+            <input type="number" id="num2-task2" value="5" style="width: 100px;">
+            <button id="calc-btn-2" onclick="calculateTask2()">= Press = mark!</button>
+            <span class="result-display" id="result-task2">Result: </span>
+        </div>
+    </div>
+
+    <div class="calc-box">
+        <h2>Task 3. Calculator with text box and increment/decrement buttons</h2>
+        <div class="row">
+            <button id="dec-1" onclick="stepValue('num1-task3', -1)">▼</button>
+            <input type="number" id="num1-task3" value="10" style="width: 50px; text-align: center;">
+            <button id="inc-1" onclick="stepValue('num1-task3', 1)">▲</button>
+            
+            <select id="operator-3">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            
+            <button id="dec-2" onclick="stepValue('num2-task3', -1)">▼</button>
+            <input type="number" id="num2-task3" value="10" style="width: 50px; text-align: center;">
+            <button id="inc-2" onclick="stepValue('num2-task3', 1)">▲</button>
+            
+            <button id="calc-btn-3" onclick="calculateTask3()">= Press = mark!</button>
+            <span class="result-display" id="result-task3">Result: </span>
+        </div>
+    </div>
+
+    <script>
+        function calculateTask1() {
+            let n1 = parseFloat(document.getElementById('num1-task1').value) || 0;
+            let n2 = parseFloat(document.getElementById('num2-task1').value) || 0;
+            let op = document.getElementById('operator-1').value;
+            let res = 0;
+
+            if (op === '+') res = n1 + n2;
+            else if (op === '-') res = n1 - n2;
+            else if (op === '*') res = n1 * n2;
+            else if (op === '/') res = n2 !== 0 ? n1 / n2 : 'Error';
+
+            document.getElementById('result-task1').innerText = "Result: " + res;
+        }
+
+        function calculateTask2() {
+            let n1 = parseFloat(document.getElementById('num1-task2').value) || 0;
+            let n2 = parseFloat(document.getElementById('num2-task2').value) || 0;
+            let radios = document.getElementsByName('operator-2');
+            let op = '+';
+            for (let r of radios) {
+                if (r.checked) {
+                    op = r.value;
+                    break;
+                }
+            }
+            let res = 0;
+
+            if (op === '+') res = n1 + n2;
+            else if (op === '-') res = n1 - n2;
+            else if (op === '*') res = n1 * n2;
+            else if (op === '/') res = n2 !== 0 ? n1 / n2 : 'Error';
+
+            document.getElementById('result-task2').innerText = "Result: " + res;
+        }
+
+        function stepValue(elementId, step) {
+            let input = document.getElementById(elementId);
+            let val = parseInt(input.value) || 0;
+            input.value = val + step;
+        }
+
+        function calculateTask3() {
+            let n1 = parseFloat(document.getElementById('num1-task3').value) || 0;
+            let n2 = parseFloat(document.getElementById('num2-task3').value) || 0;
+            let op = document.getElementById('operator-3').value;
+            let res = 0;
+
+            if (op === '+') res = n1 + n2;
+            else if (op === '-') res = n1 - n2;
+            else if (op === '*') res = n1 * n2;
+            else if (op === '/') res = n2 !== 0 ? n1 / n2 : 'Error';
+
+            document.getElementById('result-task3').innerText = "Result: " + res;
+        }
+    </script>
+</body>
+</html>
