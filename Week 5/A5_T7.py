@@ -1,33 +1,41 @@
 DELIMITER = ","
 
 def collectWords():
-    words = []
+    Words = ""
     while True:
-        word = input("insert-word (empty-stops): ")
-        if word == "":
+        Word = input("Insert word(empty stops): ")
+        if Word == "":
             break
-        words.append(word)
-    return DELIMITER.join(words)
+        if Words == "":
+            Words = Word
+        else:
+            Words += DELIMITER + Word
+    return Words
 
-def analyseWords(PWords):
-    if PWords == "":
+def analyseWords(Words):
+    if Words == "":
         word_list = []
     else:
-        word_list = PWords.split(DELIMITER)
-    
-    word_count = len(word_list)
-    char_count = sum(len(word) for word in word_list)
-    avg_length = char_count / word_count if word_count > 0 else 0
-    
-    print(f"- {word_count} words")
-    print(f"- {char_count} characters")
-    print("- {:.2f} Average word length".format(avg_length))
+        word_list = Words.split(DELIMITER)
+    Amount = len(word_list)
+    Characters = 0
+    for Word in word_list:
+        Characters += len(Word)
+    if Amount > 0:
+        Avg = Characters / Amount
+    else:
+        Avg = 0
+    print("- {} Words".format(Amount))
+    print("- {} Characters".format(Characters))
+    print("- {:.2f} Average word length".format(Avg))
+    return None
 
 def main():
-    print("program starting.")
-    collected_words = collectWords()
-    analyseWords(collected_words)
-    print("program ending.")
+    print("Program starting.")
+    Words = collectWords()
+    analyseWords(Words)
+    print("Program ending.")
+    return None
 
 if __name__ == "__main__":
     main()
