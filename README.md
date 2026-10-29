@@ -9,3 +9,6 @@ W3_6 - https://github.com/deyan-angelov-21/Python_programming_W3_6<br>
 
 W4_6 - https://github.com/deyan-angelov-21/Python_programming_W4_6<br>
 W4_7 - https://github.com/deyan-angelov-21/Python_programming_W4_7<br>
+
+W5_6 - https://github.com/deyan-angelov-21/Python_programming_W5_6<br>
+W5_7 - https://github.com/deyan-angelov-21/Python_programming_W5_7<br>
