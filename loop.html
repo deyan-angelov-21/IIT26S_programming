@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignment Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f6f9;
+            color: #333;
+        }
+        .task-card {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 { color: #007bff; font-size: 1.2rem; }
+        input, button {
+            padding: 8px 12px;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #218838; }
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            background: #e9ecef;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Assignment</h1>
+    
+    <div class="task-card">
+        <h2>1. Factorial N!</h2>
+        <p>Calculates N* (N-1) * ... * 1. Checks if N ≥ 1 (Input 0 returns 1, negative returns Unspecified).</p>
+        <input type="number" id="input1" value="5">
+        <button onclick="runTask1()">Calculate Factorial</button>
+        <div class="output" id="result1">Answer: </div>
+    </div>
+
+    <div class="task-card">
+        <h2>2. Sum of Numbers from 1 to N</h2>
+        <p>Adds numbers from 1 up to N together.</p>
+        <input type="number" id="input2" value="10">
+        <button onclick="runTask2()">Calculate Sum</button>
+        <div class="output" id="result2">Answer: </div>
+    </div>
+
+    <!-- Task 3 -->
+    <div class="task-card">
+        <h2>3. Sum of Odd & Even Numbers</h2>
+        <p>Calculates the separate sums of odd and even numbers up to N.</p>
+        <input type="number" id="input3" value="10">
+        <button onclick="runTask3()">Calculate Odd/Even Sums</button>
+        <div class="output" id="result3">Answer: </div>
+    </div>
+
+    <script>
+        function runTask1() {
+            let n = parseInt(document.getElementById('input1').value);
+            let output = document.getElementById('result1');
+            
+            if (isNaN(n) || n < 0) {
+                output.innerText = "Answer: Unspecified";
+                return;
+            }
+            
+            let factorial = 1;
+            for (let i = 1; i <= n; i++) {
+                factorial *= i;
+            }
+            output.innerText = "Answer: " + factorial;
+        }
+
+        function runTask2() {
+            let n = parseInt(document.getElementById('input2').value);
+            let output = document.getElementById('result2');
+            
+            if (isNaN(n) || n < 1) {
+                output.innerText = "Answer: Please enter a valid number >= 1";
+                return;
+            }
+            
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            output.innerText = "Answer: " + sum;
+        }
+
+        function runTask3() {
+            let n = parseInt(document.getElementById('input3').value);
+            let output = document.getElementById('result3');
+            
+            if (isNaN(n) || n < 1) {
+                output.innerText = "Answer: Please enter a valid number >= 1";
+                return;
+            }
+            
+            let sumOdd = 0;
+            let sumEven = 0;
+            
+            for (let i = 1; i <= n; i++) {
+                if (i % 2 === 0) {
+                    sumEven += i;
+                } else {
+                    sumOdd += i;
+                }
+            }
+            output.innerText = `Answer: Sum of Odd = ${sumOdd}, Sum of Even = ${sumEven}`;
+        }
+    </script>
+</body>
+</html>
